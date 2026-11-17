@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Hero from '#pages/landing/Hero.svelte';
+	import Hero from '#pages/landing/hero/Hero.svelte';
 	import About from '#pages/landing/About.svelte';
 	import SelectedProjects from '#pages/landing/SelectedProjects.svelte';
 	import TechStack from '#pages/landing/TechStack.svelte';

@@ -34,7 +34,7 @@
 				<p class="mb-1 text-sm text-soft">{item.org}</p>
 				<p class="mb-2 text-sm text-muted">{item.summary}</p>
 
-				{#if item.details.length}
+				{#if item.details?.length}
 					<button
 						type="button"
 						class="mt-2 flex items-center text-xs font-medium hover:underline"

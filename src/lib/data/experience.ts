@@ -5,14 +5,15 @@ export type TimelineItem = {
 	title: string;
 	org: string;
 	summary: string;
-	details: string[];
+	/** optional bullet list shown behind a "Show details" toggle — leave out to hide the toggle */
+	details?: string[];
 };
 
 export const experience: TimelineItem[] = [
 	{
 		period: '2025 — Present',
-		title: 'Senior Frontend Engineer',
-		org: 'Company One',
+		title: 'Junior Frontend Engineer',
+		org: 'Axon Information Systems',
 		summary: 'Placeholder summary of the role and what you owned day to day.',
 		details: [
 			'Placeholder achievement with a measurable result',
@@ -21,9 +22,9 @@ export const experience: TimelineItem[] = [
 		]
 	},
 	{
-		period: '2023 — 2025',
+		period: '2025 — Present',
 		title: 'Full Stack Developer',
-		org: 'Company Two',
+		org: 'The Peswa',
 		summary: 'Placeholder summary of the role and the products you worked on.',
 		details: [
 			'Placeholder feature you designed and shipped',
@@ -42,17 +43,9 @@ export const experience: TimelineItem[] = [
 
 export const education: TimelineItem[] = [
 	{
-		period: '2019 — 2023',
-		title: 'BSc Your Degree',
-		org: 'Your University',
+		period: '2021 — 2025',
+		title: 'BSc Business Information Technology',
+		org: 'Palm University College',
 		summary: 'Placeholder focus areas of your degree.',
-		details: ['Course one', 'Course two', 'Course three', 'Course four']
 	},
-	{
-		period: '2016 — 2019',
-		title: 'Secondary School',
-		org: 'Your School',
-		summary: 'Placeholder subjects or achievements.',
-		details: ['Subject one', 'Subject two', 'Subject three']
-	}
 ];

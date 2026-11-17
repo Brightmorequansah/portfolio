@@ -1,13 +1,13 @@
 // ✏️ Replace everything in this file with your own details.
 
 export const profile = {
-	name: 'Your Name',
-	initials: 'YN',
+	name: 'Brightmore Quansah',
+	initials: 'MM',
 	role: 'Creative Developer',
 	tagline:
 		'Designing and building calm, considered digital products. Placeholder tagline — swap in a line about what you do and where you work.',
-	location: 'Your City, Country',
-	email: 'hello@example.com',
+	location: 'Accra, Ghana',
+	email: 'brightmoreq123@gmail.com',
 	whatsapp: 'https://wa.me/0000000000',
 	fileShare: 'https://drive.google.com/',
 	socials: {
@@ -32,7 +32,7 @@ export const profile = {
 		text: 'Placeholder: a short invitation to get in touch about projects, roles or collaborations. Mention how quickly you usually reply.'
 	},
 	stackIntro:
-		'Placeholder: a sentence about the tools you reach for most. The cloud below spins — drag your cursor across it.'
+		'Placeholder: a sentence about the tools you reach for most and how you use them together.'
 };
 
 export const homeSections = [

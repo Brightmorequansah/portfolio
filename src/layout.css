@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+/* Dark mode is class-based: it applies only when <html> has the `dark` class (light is the default) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+	/* Remove Tailwind's default colour palette so only monochrome colours exist */
+	--color-*: initial;
+
+	/* Base */
+	--color-white: #ffffff;
+	--color-black: #000000;
+
+	/* Pure neutral greys (no blue/warm tint), light → dark */
+	--color-gray-50: #fafafa;
+	--color-gray-100: #f5f5f5;
+	--color-gray-200: #e5e5e5;
+	--color-gray-300: #d4d4d4;
+	--color-gray-400: #a3a3a3;
+	--color-gray-500: #737373;
+	--color-gray-600: #525252;
+	--color-gray-700: #404040;
+	--color-gray-800: #262626;
+	--color-gray-900: #171717;
+	--color-gray-950: #0a0a0a;
+
+	--animate-scroll-line: scroll-line 2s ease-in-out infinite;
+	--animate-wheel: wheel 1.6s ease-in-out infinite;
+
+	@keyframes scroll-line {
+		0% {
+			transform: translateY(-100%);
+		}
+		100% {
+			transform: translateY(200%);
+		}
+	}
+
+	@keyframes wheel {
+		0%,
+		100% {
+			transform: translateY(0);
+			opacity: 1;
+		}
+		50% {
+			transform: translateY(10px);
+			opacity: 0.3;
+		}
+	}
+}
+
+/* Semantic tokens: light mode (default) */
+:root {
+	color-scheme: light;
+	--background: var(--color-white);
+	--surface: var(--color-gray-50);
+	--surface-raised: var(--color-gray-100);
+	--foreground: var(--color-black);
+	--soft: var(--color-gray-700);
+	--muted: var(--color-gray-600);
+	--subtle: var(--color-gray-500);
+	--border: var(--color-gray-200);
+	--accent: var(--color-black);
+	--accent-foreground: var(--color-white);
+	--inverse: var(--color-gray-900);
+	--inverse-foreground: var(--color-white);
+	--inverse-muted: var(--color-gray-400);
+}
+
+/* Semantic tokens: dark mode */
+.dark {
+	color-scheme: dark;
+	--background: var(--color-gray-900);
+	--surface: var(--color-gray-800);
+	--surface-raised: var(--color-gray-800);
+	--foreground: var(--color-white);
+	--soft: var(--color-gray-300);
+	--muted: var(--color-gray-400);
+	--subtle: var(--color-gray-400);
+	--border: var(--color-gray-700);
+	--accent: var(--color-white);
+	--accent-foreground: var(--color-black);
+	--inverse: var(--color-black);
+	--inverse-foreground: var(--color-white);
+	--inverse-muted: var(--color-gray-400);
+}
+
+/* Expose the semantic tokens as Tailwind colours: bg-background, text-muted, border-border… */
+@theme inline {
+	--color-background: var(--background);
+	--color-surface: var(--surface);
+	--color-surface-raised: var(--surface-raised);
+	--color-foreground: var(--foreground);
+	--color-soft: var(--soft);
+	--color-muted: var(--muted);
+	--color-subtle: var(--subtle);
+	--color-border: var(--border);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-inverse: var(--inverse);
+	--color-inverse-foreground: var(--inverse-foreground);
+	--color-inverse-muted: var(--inverse-muted);
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-background font-sans font-light text-foreground antialiased transition-colors duration-300;
+	}
+
+	/* Default border colour, so a bare `border` class uses the theme */
+	*,
+	::before,
+	::after {
+		border-color: var(--border);
+	}
+
+	button:not(:disabled),
+	[role='button']:not(:disabled) {
+		cursor: pointer;
+	}
+
+	/* Keyboard focus ring that inverts with the theme */
+	:focus-visible {
+		@apply outline-2 outline-offset-2 outline-foreground;
+	}
+
+	::placeholder {
+		color: var(--subtle);
+	}
+
+	::selection {
+		@apply bg-foreground text-background;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+		*,
+		::before,
+		::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+}

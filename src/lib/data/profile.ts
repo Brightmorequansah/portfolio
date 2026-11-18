@@ -20,8 +20,14 @@ export const profile = {
 			'Away from the keyboard, I play video games, watch videos and research modern UI/UX ideas that are redefining how apps are designed and built.'
 		],
 		approach: [
-			{ title: 'Imagine', text: 'Start with the idea and the people it is for.' },
-			{ title: 'Create', text: 'Design interfaces that are as beautiful as they are usable.' },
+			{
+				title: 'Imagine',
+				text: 'Start with the idea, grounded in user research into the people it is for.'
+			},
+			{
+				title: 'Create',
+				text: 'Design interfaces that pair beauty with functionality and a seamless user experience.'
+			},
 			{ title: 'Build', text: 'Write clean, structured code that solves real problems.' }
 		]
 	},

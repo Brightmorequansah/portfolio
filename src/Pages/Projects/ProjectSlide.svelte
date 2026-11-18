@@ -217,6 +217,20 @@
 				<dd class="mt-1.5 flex items-center gap-1.5 font-normal">
 					{#if project.private}
 						<Lock class="size-3.5 text-muted" /> Private · In-house
+					{:else if project.url}
+						<!-- the live link lives here instead of a big button, keeping the sheet compact -->
+						<a
+							href={project.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group/live inline-flex items-center gap-1.5 underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+						>
+							<Globe class="size-3.5 text-muted" />
+							{new URL(project.url).hostname.replace(/^www\./, '')}
+							<ArrowUpRight
+								class="size-3.5 text-muted transition-transform group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5"
+							/>
+						</a>
 					{:else}
 						<Globe class="size-3.5 text-muted" /> Public
 					{/if}
@@ -234,22 +248,12 @@
 			</div>
 		</dl>
 
-		{#if project.url || project.source}
-			<div class="mt-8 flex animate-fade-up flex-wrap gap-3" style={rise(500)}>
-				{#if project.url}
-					<Button href={project.url} external>
-						View Live Site
-						<ArrowUpRight
-							class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-						/>
-					</Button>
-				{/if}
-				{#if project.source}
-					<Button href={project.source} external variant="outline">
-						<SocialIcon name="github" />
-						Source
-					</Button>
-				{/if}
+		{#if project.source}
+			<div class="mt-8 flex animate-fade-up flex-wrap gap-3 short:mt-5" style={rise(500)}>
+				<Button href={project.source} external variant="outline">
+					<SocialIcon name="github" />
+					Source
+				</Button>
 			</div>
 		{/if}
 	</div>

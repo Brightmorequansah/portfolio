@@ -9,25 +9,23 @@
 	import { featuredProjects, type Project } from '#lib/data/projects.js';
 	import { techColor } from '#lib/data/tech.js';
 
-	// public projects open their live site; private ones open their slide on /projects
-	const linkFor = (p: Project) => p.url ?? `/projects?project=${p.slug}`;
+	// every project's full write-up is its slide on /projects
+	const detailsFor = (p: Project) => `/projects?project=${p.slug}`;
 </script>
 
 <section id="projects" class="scroll-mt-16 py-20 md:py-32">
 	<Container>
 		<SectionHeading>Selected Projects</SectionHeading>
 
-		<div class="grid gap-24">
+		<div class="grid gap-24 md:gap-36">
 			{#each featuredProjects as project (project.slug)}
 				<article use:reveal={{ y: 40, duration: 0.8 }} class="group">
 					<div class="grid items-center gap-8 md:grid-cols-12">
 						<div class="relative md:col-span-7">
 							<a
-								href={linkFor(project)}
-								target={project.url ? '_blank' : undefined}
-								rel={project.url ? 'noopener noreferrer' : undefined}
+								href={detailsFor(project)}
 								class="relative block"
-								aria-label="Open {project.title}"
+								aria-label="More details about {project.title}"
 							>
 								{#if project.gallery?.length}
 									<!-- a touch smaller than the /projects gallery (88%) -->
@@ -88,17 +86,20 @@
 									</div>
 								</div>
 
-								<div class="mt-6">
-									<Button href={linkFor(project)} external={!!project.url} variant="outline">
-										View Project
-										{#if project.url}
+								<!-- More Details → the project's slide; View Project → live site (public projects only) -->
+								<div class="mt-6 flex flex-wrap gap-3">
+									<Button href={detailsFor(project)}>
+										More Details
+										<ArrowRight class="transition-transform group-hover:translate-x-1" />
+									</Button>
+									{#if project.url}
+										<Button href={project.url} external variant="outline">
+											View Project
 											<ArrowUpRight
 												class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
 											/>
-										{:else}
-											<ArrowRight class="transition-transform group-hover:translate-x-1" />
-										{/if}
-									</Button>
+										</Button>
+									{/if}
 								</div>
 							</div>
 						</div>

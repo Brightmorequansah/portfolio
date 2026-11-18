@@ -54,6 +54,6 @@ export const education: TimelineItem[] = [
 		period: '2021 — 2025',
 		title: 'BSc Business Information Technology',
 		org: 'Palm University College',
-		summary: 'Placeholder focus areas of your degree.',
-	},
+		summary: 'Placeholder focus areas of your degree.'
+	}
 ];

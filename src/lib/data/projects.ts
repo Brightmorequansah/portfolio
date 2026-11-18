@@ -12,17 +12,41 @@ import {
 	BookOpen,
 	GraduationCap,
 	Bell,
-	ShieldCheck
+	ShieldCheck,
+	ShoppingBag,
+	CreditCard,
+	PackageSearch,
+	LayoutDashboard,
+	Rss,
+	Headphones,
+	Mail
 } from '@lucide/svelte';
 
 import axDashboard from '../assets/projects/axlearn/dashboard.webp';
 import axCoursePlayer from '../assets/projects/axlearn/course-player.webp';
-import axLearnerDashboard from '../assets/projects/axlearn/learner-dashboard.png';
+import axLearnerDashboard from '../assets/projects/axlearn/learner-dashboard.png?format=webp';
 import axLogin from '../assets/projects/axlearn/login.webp';
-import axCourses from '../assets/projects/axlearn/my-courses.png';
+import axCourses from '../assets/projects/axlearn/my-courses.png?format=webp';
 import axCourseBuilder from '../assets/projects/axlearn/course-builder.webp';
 import axProjectDetail from '../assets/projects/axlearn/project-detail.webp';
 import axAlerts from '../assets/projects/axlearn/alerts.webp';
+
+// your PNG screenshots, converted to 1920px WebP at build time (see vite.config.ts)
+import pwHero from '../assets/projects/peswa-shop/01-hero.png?w=1920&format=webp';
+import pwProduct from '../assets/projects/peswa-shop/04-add-to-cart.png?w=1920&format=webp';
+import pwCheckout from '../assets/projects/peswa-shop/06-checkout.png?w=1920&format=webp';
+import pwSuccess from '../assets/projects/peswa-shop/07-success.png?w=1920&format=webp';
+import pwWaitlist from '../assets/projects/peswa-shop/09-waitlist.png?w=1920&format=webp';
+import pwAdminDashboard from '../assets/projects/peswa-shop/admin-01-dashboard.png?w=1920&format=webp';
+import pwAdminProducts from '../assets/projects/peswa-shop/admin-02-products.png?w=1920&format=webp';
+import pwAdminAddProduct from '../assets/projects/peswa-shop/admin-03-add-product.png?w=1920&format=webp';
+import pwAdminProductView from '../assets/projects/peswa-shop/admin-05-product-view.png?w=1920&format=webp';
+
+import psHero from '../assets/projects/peswa-site/01-home-hero.png?w=1920&format=webp';
+import psHost from '../assets/projects/peswa-site/03-host.png?w=1920&format=webp';
+import psAbout from '../assets/projects/peswa-site/06-about.png?w=1920&format=webp';
+import psEpisodes from '../assets/projects/peswa-site/07-episodes.png?w=1920&format=webp';
+import psContact from '../assets/projects/peswa-site/08-contact.png?w=1920&format=webp';
 
 export type Project = {
 	slug: string;
@@ -116,7 +140,7 @@ export const projects: Project[] = [
 		private: true,
 		year: '2026',
 		duration: 'Ongoing',
-		team: 'Team of 3',
+		team: 'Team of 5',
 		role: 'Frontend Engineer',
 		tech: ['SvelteKit', 'TypeScript', 'Tailwind CSS', 'GraphQL'],
 		highlights: [
@@ -154,60 +178,120 @@ export const projects: Project[] = [
 		featured: true
 	},
 	{
-		slug: 'project-two',
-		title: 'Project Two',
-		subtitle: 'SaaS Dashboard',
+		slug: 'peswa-shop',
+		title: 'Peswa Shop',
+		subtitle: 'E-commerce Store & Admin',
 		description:
-			'Placeholder description of a dashboard product: who uses it, what it helps them do and the hardest technical problem you solved.',
-		image: '/projects/project-2.svg',
-		url: 'https://example.com',
-		year: '2025',
-		duration: '5 months',
-		team: 'Team of 4',
-		role: 'Frontend Lead',
-		tech: ['React', 'Node.js', 'PostgreSQL', 'Redis'],
+			'The online store for The Peswa, a Ghanaian streetwear brand. I built it end to end: storefront, cart, Paystack checkout, order tracking, a pre-launch waitlist and the admin console.',
+		image: pwHero,
+		gallery: [
+			{ src: pwHero, caption: 'Storefront hero: "Wear The Story."' },
+			{ src: pwWaitlist, caption: 'Pre-launch waitlist with a live countdown to the drop' },
+			{ src: pwProduct, caption: 'Product page: gallery, colour and size variants, add to cart' },
+			{ src: pwCheckout, caption: 'Checkout with Ghana regions, shipping options and coupons' },
+			{ src: pwSuccess, caption: 'Order confirmation with a reference for tracking' },
+			{
+				src: pwAdminDashboard,
+				caption: 'Admin console: fulfilment, sales and inventory at a glance'
+			},
+			{ src: pwAdminProducts, caption: 'Product catalogue with stock levels and units sold' },
+			{
+				src: pwAdminAddProduct,
+				caption: 'Product editor: pricing, discounts, sizes, colours, scheduling'
+			},
+			{ src: pwAdminProductView, caption: 'Product detail panel with variants and stock' }
+		],
+		url: 'https://peswa-shop.vercel.app',
+		year: '2026',
+		duration: 'Ongoing',
+		team: 'Team of 2',
+		role: 'Full-Stack Developer',
+		tech: ['SvelteKit', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Paystack'],
 		highlights: [
-			'Placeholder real-time charts',
-			'Placeholder role-based access',
-			'Placeholder audit trail'
+			'Storefront with product variants, cart and wishlist',
+			'Paystack checkout with server-side payment verification',
+			'Admin console for products, orders, customers and analytics'
 		],
 		features: [
-			{ icon: Gauge, title: 'Real-time', text: 'Placeholder: live data with streaming updates.' },
-			{ icon: Layers, title: 'Modular', text: 'Placeholder: composable widgets and layouts.' },
-			{ icon: Lock, title: 'Permissions', text: 'Placeholder: granular roles and access control.' },
-			{ icon: Database, title: 'Scalable', text: 'Placeholder: handles millions of rows.' }
+			{
+				icon: ShoppingBag,
+				title: 'Storefront',
+				text: 'Category filters, product galleries, colour and size variants, wishlist.'
+			},
+			{
+				icon: CreditCard,
+				title: 'Paystack Checkout',
+				text: 'Ghana regions, shipping options, coupons and verified payments.'
+			},
+			{
+				icon: PackageSearch,
+				title: 'Order Tracking',
+				text: 'Track any order by reference and email, or from your account.'
+			},
+			{
+				icon: LayoutDashboard,
+				title: 'Admin Console',
+				text: 'Products, orders, customers, ECharts analytics and the waitlist.'
+			}
 		],
 		impact: [
-			{ value: '12k', label: 'Daily Users' },
-			{ value: '-40%', label: 'Support Tickets' },
-			{ value: '99.9%', label: 'Uptime' }
+			{ value: '28', label: 'Pages' },
+			{ value: '8', label: 'Admin Sections' },
+			{ value: '2', label: 'Delivery Regions' }
 		],
 		featured: true
 	},
 	{
-		slug: 'project-three',
-		title: 'Project Three',
-		subtitle: 'Mobile Companion App',
+		slug: 'peswa-podcast',
+		title: 'The Peswa Podcast',
+		subtitle: 'Podcast Website',
 		description:
-			'Placeholder description of a mobile app. Mention the platform, the core flow and how it connects to the rest of the product.',
-		image: '/projects/project-3.svg',
-		url: 'https://example.com',
-		source: 'https://github.com/your-username/project-three',
-		year: '2024',
-		duration: '4 months',
-		team: 'Team of 2',
-		role: 'Mobile Developer',
-		tech: ['Expo', 'TypeScript', 'Supabase'],
-		highlights: [
-			'Placeholder offline mode',
-			'Placeholder push notifications',
-			'Placeholder biometric login'
+			'The website for The Peswa Podcast, the voice of African entrepreneurship. Episodes sync from its RSS feed into a searchable library, with listen links and a guest contact form.',
+		image: psHero,
+		gallery: [
+			{ src: psHero, caption: 'Home hero: "The Peswa Podcast"' },
+			{ src: psHost, caption: 'Meet the host' },
+			{ src: psEpisodes, caption: 'Episode library with search and topic filters' },
+			{ src: psAbout, caption: 'About the show' },
+			{ src: psContact, caption: 'Contact form for guests and partners, with auto-reply' }
 		],
-		features: defaultFeatures,
+		url: 'https://www.thepeswa.com',
+		year: '2025',
+		duration: 'Ongoing',
+		team: 'Team of 2',
+		role: 'Frontend Developer',
+		tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+		highlights: [
+			'Episodes synced automatically from the podcast RSS feed',
+			'Searchable episode library with topic filters',
+			'Contact form with EmailJS auto-replies'
+		],
+		features: [
+			{
+				icon: Rss,
+				title: 'Live Episode Feed',
+				text: "New episodes sync automatically from the show's RSS feed."
+			},
+			{
+				icon: Search,
+				title: 'Episode Library',
+				text: 'Search every episode by guest or topic, with category filters.'
+			},
+			{
+				icon: Headphones,
+				title: 'Listen Anywhere',
+				text: 'One-tap links to Spotify, Apple Podcasts and YouTube.'
+			},
+			{
+				icon: Mail,
+				title: 'Guest Enquiries',
+				text: 'Contact form for guests and partners, with EmailJS auto-replies.'
+			}
+		],
 		impact: [
-			{ value: '4.8★', label: 'App Rating' },
-			{ value: '20k', label: 'Downloads' },
-			{ value: '60fps', label: 'Animations' }
+			{ value: '89', label: 'Episodes' },
+			{ value: '3', label: 'Platforms' },
+			{ value: '5', label: 'Pages' }
 		],
 		featured: true
 	},

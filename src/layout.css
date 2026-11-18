@@ -3,6 +3,8 @@
 
 /* Dark mode is class-based: it applies only when <html> has the `dark` class (light is the default) */
 @custom-variant dark (&:where(.dark, .dark *));
+/* short viewports (small laptops): tighten vertical rhythm on full-screen layouts */
+@custom-variant short (@media (max-height: 800px));
 
 @theme {
 	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
@@ -30,6 +32,26 @@
 	--animate-scroll-line: scroll-line 2s ease-in-out infinite;
 	--animate-wheel: wheel 1.6s ease-in-out infinite;
 	--animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+	/* content rising into place on mount (stagger with animation-delay) */
+	--animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+	/* a bar filling left → right; its animationend can drive autoplay */
+	--animate-progress: progress var(--progress-duration, 5s) linear forwards;
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(28px);
+		}
+	}
+
+	@keyframes progress {
+		from {
+			transform: scaleX(0);
+		}
+		to {
+			transform: scaleX(1);
+		}
+	}
 
 	@keyframes marquee {
 		to {
@@ -75,6 +97,14 @@
 	--inverse: var(--color-gray-900);
 	--inverse-foreground: var(--color-white);
 	--inverse-muted: var(--color-gray-400);
+	/* device mockup: solid space-black laptop around project screenshots */
+	--device-bezel: var(--color-black);
+	--device-shell: var(--color-gray-800);
+	--device-lid: var(--color-gray-600);
+	--device-body: var(--color-gray-800);
+	--device-body-highlight: var(--color-gray-600);
+	--device-body-shade: var(--color-gray-900);
+	--device-groove: var(--color-gray-950);
 }
 
 /* Semantic tokens: dark mode */
@@ -93,6 +123,14 @@
 	--inverse: var(--color-black);
 	--inverse-foreground: var(--color-white);
 	--inverse-muted: var(--color-gray-400);
+	/* lighter graphite so the laptop still stands out on a dark page */
+	--device-bezel: var(--color-black);
+	--device-shell: var(--color-gray-600);
+	--device-lid: var(--color-gray-500);
+	--device-body: var(--color-gray-600);
+	--device-body-highlight: var(--color-gray-400);
+	--device-body-shade: var(--color-gray-700);
+	--device-groove: var(--color-gray-800);
 }
 
 /* Expose the semantic tokens as Tailwind colours: bg-background, text-muted, border-border… */
@@ -110,6 +148,13 @@
 	--color-inverse: var(--inverse);
 	--color-inverse-foreground: var(--inverse-foreground);
 	--color-inverse-muted: var(--inverse-muted);
+	--color-device-bezel: var(--device-bezel);
+	--color-device-shell: var(--device-shell);
+	--color-device-lid: var(--device-lid);
+	--color-device-body: var(--device-body);
+	--color-device-body-highlight: var(--device-body-highlight);
+	--color-device-body-shade: var(--device-body-shade);
+	--color-device-groove: var(--device-groove);
 }
 
 @layer base {

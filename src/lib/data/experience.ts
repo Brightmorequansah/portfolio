@@ -14,30 +14,38 @@ export const experience: TimelineItem[] = [
 		period: '2025 — Present',
 		title: 'Junior Frontend Engineer',
 		org: 'Axon Information Systems',
-		summary: 'Placeholder summary of the role and what you owned day to day.',
+		summary:
+			'Working with frontend and backend engineers to ship user-facing features, tested and deployed.',
 		details: [
-			'Placeholder achievement with a measurable result',
-			'Placeholder responsibility or initiative you led',
-			'Placeholder tools or practices you introduced'
+			'Shipped user-facing features end to end, from UI build to API integration and release',
+			'Built reusable, responsive UI components that keep screens consistent and speed up new feature work',
+			'Integrated REST APIs with typed TypeScript models, plus clear loading, empty and error states'
 		]
 	},
 	{
 		period: '2025 — Present',
 		title: 'Full Stack Developer',
 		org: 'The Peswa',
-		summary: 'Placeholder summary of the role and the products you worked on.',
+		summary:
+			'Designed and built The Peswa’s brand website and online shop end to end, from frontend to backend.',
 		details: [
-			'Placeholder feature you designed and shipped',
-			'Placeholder performance or quality improvement',
-			'Placeholder collaboration with design or product'
+			'Built the brand website to present the business, its story and offerings on every screen size',
+			'Developed the e-commerce shop with a product catalogue, cart and checkout flow',
+			'Handled both frontend and backend, plus deployment and ongoing updates after launch'
 		]
 	},
 	{
-		period: '2021 — 2023',
-		title: 'Freelance Developer',
-		org: 'Self-employed',
-		summary: 'Placeholder summary of the clients and kinds of projects you took on.',
-		details: ['Placeholder client project', 'Placeholder outcome for a client']
+		period: '2023 — 2024',
+		title: 'Software Developer — Intern',
+		org: 'Axon Information Systems',
+		summary:
+			'Built a strong foundation in JavaScript, React and web design while learning to work in a development team.',
+		details: [
+			'Learnt and practised modern JavaScript and React through hands-on tasks',
+			'Built an expense tracker app with React to apply components, state and forms',
+			'Studied core web design and development concepts, from layout to responsive UI',
+			'Learnt how to work effectively in a development team and collaborate on shared projects'
+		]
 	}
 ];
 

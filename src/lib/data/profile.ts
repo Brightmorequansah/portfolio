@@ -1,5 +1,3 @@
-// ✏️ Replace everything in this file with your own details.
-
 export const profile = {
 	name: 'Brightmore Quansah',
 	initials: 'MM',
@@ -17,14 +15,14 @@ export const profile = {
 	about: {
 		greeting: 'Hi, nice to meet you',
 		paragraphs: [
-			'This is placeholder bio copy. Use this first paragraph to introduce yourself: what you build, how long you have been doing it and the kind of problems you enjoy solving.',
-			'Use the second paragraph for the teams and clients you have worked with and the strengths you bring to a project — the things people come back to you for.',
-			'Close with something human: a hobby, an interest, or what you get up to away from the keyboard.'
+			'I love to imagine an idea, shape it into a design and build it into being. I care about both function and beauty: products should work flawlessly and feel great to use.',
+			'As a developer, I enjoy writing clean code, structuring projects well and understanding how programs work under the hood, so I can solve each problem with the right solution rather than a generic one. I also understand how to work well in a team, communicating clearly and collaborating to ship great products together.',
+			'Away from the keyboard, I play video games, watch videos and research modern UI/UX ideas that are redefining how apps are designed and built.'
 		],
 		approach: [
-			{ title: 'Clarity', text: 'Placeholder: one line on keeping things clear and simple.' },
-			{ title: 'Craft', text: 'Placeholder: one line on building things properly.' },
-			{ title: 'Care', text: 'Placeholder: one line on the details people feel.' }
+			{ title: 'Imagine', text: 'Start with the idea and the people it is for.' },
+			{ title: 'Create', text: 'Design interfaces that are as beautiful as they are usable.' },
+			{ title: 'Build', text: 'Write clean, structured code that solves real problems.' }
 		]
 	},
 	contact: {
@@ -43,7 +41,7 @@ export const homeSections = [
 ];
 
 export const navLinks = [
-	{ label: 'Home', href: '/', children: homeSections },
+	{ label: 'Home', href: '/' },
 	{ label: 'Projects', href: '/projects' },
 	{ label: 'Services', href: '/services' },
 	{ label: 'Get Started', href: '/get-started' }

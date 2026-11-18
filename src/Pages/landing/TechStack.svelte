@@ -12,7 +12,8 @@
 	const rowTwo = stack.slice(half);
 </script>
 
-<section id="stack" class="scroll-mt-16 overflow-hidden bg-surface py-20 md:py-32">
+<!-- light mode: a proper grey band (surface-raised); in dark mode surface-raised = surface -->
+<section id="stack" class="scroll-mt-16 overflow-hidden bg-surface-raised py-20 md:py-32">
 	<Container>
 		<SectionHeading>Tech Stack</SectionHeading>
 		<p use:reveal class="mx-auto mb-12 max-w-2xl text-center text-lg text-soft">

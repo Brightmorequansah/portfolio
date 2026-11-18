@@ -1,14 +1,51 @@
-// ✏️ Replace with your own projects. Put screenshots in /static/projects and point `image` at them.
+// ✏️ Replace with your own projects. Screenshots live in src/lib/assets/projects/<slug> and are imported below.
 import type { Component } from 'svelte';
-import { Gauge, Layers, Lock, Smartphone, Search, Zap, Database, Palette } from '@lucide/svelte';
+import {
+	Gauge,
+	Layers,
+	Lock,
+	Smartphone,
+	Search,
+	Zap,
+	Database,
+	Palette,
+	BookOpen,
+	GraduationCap,
+	Bell,
+	ShieldCheck
+} from '@lucide/svelte';
+
+import axDashboard from '../assets/projects/axlearn/dashboard.webp';
+import axCoursePlayer from '../assets/projects/axlearn/course-player.webp';
+import axLearnerDashboard from '../assets/projects/axlearn/learner-dashboard.png';
+import axLogin from '../assets/projects/axlearn/login.webp';
+import axCourses from '../assets/projects/axlearn/my-courses.png';
+import axCourseBuilder from '../assets/projects/axlearn/course-builder.webp';
+import axProjectDetail from '../assets/projects/axlearn/project-detail.webp';
+import axAlerts from '../assets/projects/axlearn/alerts.webp';
 
 export type Project = {
 	slug: string;
 	title: string;
 	subtitle: string;
 	description: string;
+	/** cover image (landing page + first gallery frame) */
 	image: string;
-	url: string;
+	/** extra screens shown as a switchable gallery on /projects */
+	gallery?: {
+		src: string;
+		caption: string;
+		/** 'contain' shows the whole image (for shots that aren't 16:10) instead of filling the screen */
+		fit?: 'contain';
+		/** colour behind a 'contain' shot; use the screenshot's own edge colour so it blends in */
+		matte?: string;
+		/** CSS inset() to clip stray capture edges, e.g. '0 0.2% 0.2% 0' (top right bottom left) */
+		trim?: string;
+	}[];
+	/** live site; leave out for private / in-house apps */
+	url?: string;
+	/** in-house app that isn't publicly accessible: no live link, labelled "In-house" */
+	private?: boolean;
 	source?: string;
 	year: string;
 	duration: string;
@@ -37,29 +74,82 @@ const defaultFeatures = [
 
 export const projects: Project[] = [
 	{
-		slug: 'project-one',
-		title: 'Project One',
-		subtitle: 'E-commerce Platform',
+		slug: 'axlearn',
+		title: 'Axlearn',
+		subtitle: 'Learning Management Platform',
 		description:
-			'Placeholder description. Two or three sentences on the problem, what you built and the result. Keep it focused on outcomes.',
-		image: '/projects/project-1.svg',
-		url: 'https://example.com',
-		source: 'https://github.com/your-username/project-one',
-		year: '2025',
-		duration: '3 months',
-		team: 'Solo project',
-		role: 'Full-Stack Developer',
-		tech: ['SvelteKit', 'TypeScript', 'Tailwind CSS', 'Stripe'],
-		highlights: [
-			'Placeholder key feature one',
-			'Placeholder key feature two',
-			'Placeholder key feature three'
+			'An internal learning platform for Axon Information Systems that onboards interns and upskills teams. I built large parts of the frontend, from the course builder and guided learn page to the dashboards and live notifications.',
+		image: axDashboard,
+		gallery: [
+			{ src: axLogin, caption: 'Sign-in screen with the Axon brand story' },
+			{ src: axDashboard, caption: 'Admin dashboard: users, courses, enrolments and completion' },
+			{
+				src: axLearnerDashboard,
+				caption: 'Learner dashboard: progress, quiz results, activity and achievements',
+				// the user's own 16:9 capture: shown whole on its page-grey edge colour
+				fit: 'contain',
+				matte: '#f3f3f3',
+				trim: '0 0.1% 0 0' // 1px window edge on the right
+			},
+			{
+				src: axCoursePlayer,
+				caption: 'Learn page with ordered lessons, progress and an AI assistant'
+			},
+			{
+				src: axCourses,
+				caption: 'My Courses: progress, enrolment status and one-click start or retake',
+				// the user's own 16:9 capture: shown whole on its page-grey edge colour
+				fit: 'contain',
+				matte: '#f3f3f3',
+				trim: '0 0.2% 0.25% 0' // 3px / 2px window edge on the right and bottom
+			},
+			{
+				src: axCourseBuilder,
+				caption: 'Four-step course builder: details, modules, audience, publish'
+			},
+			{
+				src: axProjectDetail,
+				caption: 'Projects that bundle courses, quizzes, deliverables and reviews'
+			},
+			{ src: axAlerts, caption: 'Alerts inbox with drafts, scheduled sends and read states' }
 		],
-		features: defaultFeatures,
+		private: true,
+		year: '2026',
+		duration: 'Ongoing',
+		team: 'Team of 3',
+		role: 'Frontend Engineer',
+		tech: ['SvelteKit', 'TypeScript', 'Tailwind CSS', 'GraphQL'],
+		highlights: [
+			'Course builder for modules, lessons, audiences and scheduled publishing',
+			'Guided learn page with locked lesson order and an AI tutor panel',
+			'Live notifications with a bell inbox and scheduled alerts'
+		],
+		features: [
+			{
+				icon: BookOpen,
+				title: 'Course Builder',
+				text: 'Step-by-step wizard for modules, lessons, audiences and publishing.'
+			},
+			{
+				icon: GraduationCap,
+				title: 'Guided Learning',
+				text: 'Lessons unlock in order, with progress tracking and an AI tutor.'
+			},
+			{
+				icon: Bell,
+				title: 'Live Alerts',
+				text: 'Server-sent notifications, a bell inbox and scheduled alerts.'
+			},
+			{
+				icon: ShieldCheck,
+				title: 'Role-based Access',
+				text: 'Keycloak sign-in with admin, supervisor and learner workspaces.'
+			}
+		],
 		impact: [
-			{ value: '1.1s', label: 'Load Time' },
-			{ value: '+35%', label: 'Conversion' },
-			{ value: '99/100', label: 'Lighthouse' }
+			{ value: '3', label: 'User Roles' },
+			{ value: '9', label: 'Feature Modules' },
+			{ value: '55+', label: 'Screens' }
 		],
 		featured: true
 	},

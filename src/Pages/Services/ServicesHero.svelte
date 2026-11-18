@@ -10,7 +10,7 @@
 	<Container class="max-w-7xl md:px-8 lg:px-12">
 		<div class="mx-auto max-w-4xl text-center">
 			<div use:reveal={{ duration: 0.8 }} class="mb-8">
-				<h1 class="mb-6 text-4xl font-light tracking-tighter md:text-6xl lg:text-7xl">
+				<h1 class="mb-6 text-3xl font-light tracking-tighter sm:text-4xl md:text-6xl lg:text-7xl">
 					<span class="font-normal">{servicesHero.lead}</span>
 					<br />
 					<span class="relative inline-block">
@@ -21,7 +21,7 @@
 						></span>
 					</span>
 				</h1>
-				<p class="mx-auto max-w-2xl text-soft md:text-lg">{servicesHero.text}</p>
+				<p class="mx-auto max-w-2xl text-[15px] text-soft md:text-lg">{servicesHero.text}</p>
 			</div>
 			<div
 				use:reveal={{ duration: 0.8, delay: 0.3 }}
@@ -31,7 +31,7 @@
 					Explore Services
 					<ArrowRight class="transition-transform group-hover:translate-x-1" />
 				</Button>
-				<Button href="/#contact" variant="outline" size="lg">Get a Quote</Button>
+				<Button href="/get-started" variant="outline" size="lg">Start a Project</Button>
 			</div>
 		</div>
 	</Container>

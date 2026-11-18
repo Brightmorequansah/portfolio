@@ -38,7 +38,9 @@
 	{#if submitted}
 		<div in:fade class="rounded-2xl border border-accent p-12 text-center">
 			<CircleCheckBig class="mx-auto mb-6 size-12" />
-			<h2 class="mb-2 text-3xl font-light tracking-tight">{submitPanel.successTitle}</h2>
+			<h2 class="mb-2 text-2xl font-light tracking-tight md:text-3xl">
+				{submitPanel.successTitle}
+			</h2>
 			<p class="text-muted">{submitPanel.successText}</p>
 		</div>
 	{:else}
@@ -68,7 +70,7 @@
 								<section.icon class="size-5" />
 							</div>
 							<div>
-								<h3 class="text-xl font-light">{section.title}</h3>
+								<h3 class="text-lg font-light md:text-xl">{section.title}</h3>
 								<p class="mt-0.5 text-sm text-muted">{section.subtitle}</p>
 							</div>
 						</div>
@@ -105,7 +107,7 @@
 					<div class="rounded-2xl bg-background p-8">
 						<div class="flex flex-col items-center justify-between gap-6 md:flex-row">
 							<div>
-								<h3 class="mb-2 text-2xl font-light">{submitPanel.title}</h3>
+								<h3 class="mb-2 text-xl font-light md:text-2xl">{submitPanel.title}</h3>
 								<p class="text-muted">{submitPanel.text}</p>
 							</div>
 							<Button type="submit" size="lg">

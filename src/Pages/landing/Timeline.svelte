@@ -23,7 +23,7 @@
 </script>
 
 <div>
-	<h3 class="mb-6 flex items-center text-xl font-light">
+	<h3 class="mb-6 flex items-center text-lg font-light md:text-xl">
 		<span use:reveal={{ width: '1.5rem', duration: 0.6 }} class="mr-3 h-0.5 w-6 bg-accent"></span>
 		{heading}
 	</h3>

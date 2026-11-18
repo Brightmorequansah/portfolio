@@ -18,7 +18,7 @@
 		<div class="mx-auto max-w-3xl text-center">
 			<h1
 				use:reveal={{ duration: 0.8, delay: 0.2 }}
-				class="mb-6 text-4xl font-light tracking-tighter md:text-6xl lg:text-7xl"
+				class="mb-6 text-3xl font-light tracking-tighter sm:text-4xl md:text-6xl lg:text-7xl"
 			>
 				<span class="font-normal">{profile.name}</span>
 				<br />
@@ -32,7 +32,7 @@
 			</h1>
 
 			<div use:reveal={{ duration: 0.8, delay: 0.4 }} class="flex flex-col items-center gap-8">
-				<p class="mx-auto max-w-xl text-soft md:text-lg">{profile.tagline}</p>
+				<p class="mx-auto max-w-xl text-[15px] text-soft md:text-lg">{profile.tagline}</p>
 				<div class="flex gap-4">
 					<Button href="#projects">
 						View Projects

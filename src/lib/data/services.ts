@@ -1,26 +1,25 @@
-// ✏️ Replace with the services you offer, your prices and plans.
+// What I offer. No prices: each service links to a real project that shows it in action.
 import type { Component } from 'svelte';
 import {
 	Globe,
-	Server,
+	AppWindow,
+	CreditCard,
 	Palette,
-	Wrench,
-	Zap,
-	ShieldCheck,
-	Headphones,
-	Search,
-	Cloud,
-	HardDrive,
-	Gauge,
-	Lock,
-	Layers,
 	Smartphone,
-	Code,
-	Rocket,
-	Monitor,
-	Settings,
+	Search,
+	Gauge,
+	Mail,
+	Lock,
 	Database,
-	Clock
+	LayoutDashboard,
+	Users,
+	ShoppingCart,
+	ShieldCheck,
+	PackageSearch,
+	Receipt,
+	PenTool,
+	LayoutGrid,
+	MousePointerClick
 } from '@lucide/svelte';
 
 export type Service = {
@@ -30,127 +29,114 @@ export type Service = {
 	description: string;
 	status: string;
 	features: { icon: Component; title: string; text: string }[];
-	metrics: { value: string; label: string }[];
-	price: { from: string; unit: string; summary: string };
-	plans: { name: string; price: string; specs: string }[];
-	visual: { icons: Component[]; label: string; value: string; badge: string };
+	/** tech names; shown as brand-coloured badges (see src/lib/data/tech.ts) */
+	tools: string[];
+	/** slug of a project in projects.ts that shows this service in action */
+	project: string;
 };
 
 export const servicesHero = {
 	lead: 'Services',
-	title: 'Built For You',
-	text: 'Placeholder intro to your services. One or two sentences on who you help and what they get when they work with you.'
+	title: 'What I Do',
+	text: 'I design and build websites, full web applications and payment flows, from the first sketch to a live product people use.'
 };
 
 export const services: Service[] = [
 	{
 		icon: Globe,
-		title: 'Website Design & Build',
-		tagline: 'Custom sites that convert',
+		title: 'Build Websites',
+		tagline: 'Fast, responsive sites that tell your story',
 		description:
-			'Placeholder description of your flagship service. Explain the process, what is included and the type of client it suits best.',
+			'From a single landing page to a full brand site, I build websites that load fast, look right on every screen and make it easy for visitors to find what they came for.',
 		status: 'Available now',
 		features: [
-			{ icon: Palette, title: 'Custom Design', text: 'Placeholder: tailored to your brand.' },
-			{ icon: Smartphone, title: 'Responsive', text: 'Placeholder: looks great on every device.' },
+			{ icon: Smartphone, title: 'Responsive', text: 'Built for phones, tablets and desktops.' },
+			{ icon: Search, title: 'SEO Ready', text: 'Clean metadata, sitemaps and fast pages.' },
+			{ icon: Gauge, title: 'Fast & Accessible', text: 'Optimised assets and solid markup.' },
 			{
-				icon: Search,
-				title: 'SEO Foundations',
-				text: 'Placeholder: metadata, sitemaps and speed.'
-			},
-			{ icon: Headphones, title: 'Launch Support', text: 'Placeholder: help after go-live.' }
-		],
-		metrics: [
-			{ value: '<2s', label: 'Load Time' },
-			{ value: '95+', label: 'Lighthouse' },
-			{ value: '4 wks', label: 'Typical Build' }
-		],
-		price: { from: '$1,500', unit: 'project', summary: 'Design • Build • Launch' },
-		plans: [
-			{ name: 'Starter', price: '$1,500', specs: 'Up to 5 pages' },
-			{ name: 'Business', price: '$3,000', specs: 'Up to 12 pages + CMS' },
-			{ name: 'Custom', price: 'Quote', specs: 'Bespoke features' }
-		],
-		visual: {
-			icons: [Monitor, Palette, Code, Rocket],
-			label: 'Starting from',
-			value: '$1,500',
-			badge: '$1.5k+'
-		}
-	},
-	{
-		icon: Server,
-		title: 'Managed Hosting',
-		tagline: 'Fast, secure, looked after',
-		description:
-			'Placeholder description of a hosting or maintenance service. Cover uptime, backups and what you handle so the client does not have to.',
-		status: 'Available now',
-		features: [
-			{ icon: Zap, title: 'Fast Servers', text: 'Placeholder: SSD storage and a global CDN.' },
-			{ icon: ShieldCheck, title: 'Security Updates', text: 'Placeholder: patched automatically.' },
-			{ icon: Lock, title: 'Free SSL', text: 'Placeholder: HTTPS on every site.' },
-			{
-				icon: HardDrive,
-				title: 'Daily Backups',
-				text: 'Placeholder: restore any day in one click.'
+				icon: Mail,
+				title: 'Contact Forms',
+				text: 'Enquiries straight to your inbox, with auto-replies.'
 			}
 		],
-		metrics: [
-			{ value: '99.9%', label: 'Uptime' },
-			{ value: '24h', label: 'Backups' },
-			{ value: '10GB', label: 'Storage' }
-		],
-		price: { from: '$15', unit: 'month', summary: '10GB Storage • Free SSL' },
-		plans: [
-			{ name: 'Basic', price: '$15/mo', specs: '1 site • 10GB' },
-			{ name: 'Pro', price: '$30/mo', specs: '5 sites • 50GB' },
-			{ name: 'Agency', price: '$60/mo', specs: 'Unlimited sites' }
-		],
-		visual: {
-			icons: [Cloud, Database, Gauge, ShieldCheck],
-			label: 'Plans from',
-			value: '$15/mo',
-			badge: '$15+'
-		}
+		tools: ['Next.js', 'SvelteKit', 'React', 'Tailwind CSS'],
+		project: 'peswa-podcast'
 	},
 	{
-		icon: Wrench,
-		title: 'Care & Maintenance',
-		tagline: 'Peace of mind, every month',
+		icon: AppWindow,
+		title: 'Full Web Applications',
+		tagline: 'Complete products with users, data and dashboards',
 		description:
-			'Placeholder description of an ongoing retainer: content edits, monitoring, small improvements and a guaranteed response time.',
-		status: 'Limited slots',
+			'Fully functional web apps built front to back: sign-in and user roles, databases and APIs, dashboards and admin tools, tested and deployed so your team can rely on them every day.',
+		status: 'Available now',
 		features: [
 			{
-				icon: Clock,
-				title: 'Fast Response',
-				text: 'Placeholder: replies within one business day.'
+				icon: Lock,
+				title: 'Auth & Roles',
+				text: 'Secure sign-in with the right access for each user.'
 			},
-			{ icon: Settings, title: 'Updates', text: 'Placeholder: plugins, packages and fixes.' },
-			{ icon: Gauge, title: 'Monitoring', text: 'Placeholder: uptime and performance alerts.' },
-			{ icon: Layers, title: 'Small Changes', text: 'Placeholder: content and layout tweaks.' }
+			{ icon: Database, title: 'Data & APIs', text: 'Databases, REST and GraphQL, fully typed.' },
+			{
+				icon: LayoutDashboard,
+				title: 'Dashboards',
+				text: 'Charts and stats that show what matters.'
+			},
+			{ icon: Users, title: 'Admin Tools', text: 'Manage content, users and orders in one place.' }
 		],
-		metrics: [
-			{ value: '1 day', label: 'Response' },
-			{ value: '5 hrs', label: 'Monthly Time' },
-			{ value: '100%', label: 'Covered' }
+		tools: ['SvelteKit', 'React', 'TypeScript', 'Supabase', 'GraphQL'],
+		project: 'axlearn'
+	},
+	{
+		icon: CreditCard,
+		title: 'Payment Integrations',
+		tagline: 'Secure checkouts your customers trust',
+		description:
+			'I connect your site or app to payment providers like Paystack, with a smooth checkout, every payment verified on the server, and orders your customers can track from purchase to delivery.',
+		status: 'Available now',
+		features: [
+			{
+				icon: ShoppingCart,
+				title: 'Checkout Flows',
+				text: 'Cart, delivery options and coupons.'
+			},
+			{
+				icon: ShieldCheck,
+				title: 'Verified Payments',
+				text: 'Every payment confirmed on the server.'
+			},
+			{
+				icon: PackageSearch,
+				title: 'Order Tracking',
+				text: 'Customers follow orders by reference.'
+			},
+			{ icon: Receipt, title: 'Confirmations', text: 'Clear receipts and email updates.' }
 		],
-		price: { from: '$200', unit: 'month', summary: '5 hours • Priority support' },
-		plans: [
-			{ name: 'Lite', price: '$200/mo', specs: '5 hours' },
-			{ name: 'Plus', price: '$400/mo', specs: '12 hours' },
-			{ name: 'Partner', price: '$800/mo', specs: '30 hours' }
+		tools: ['Paystack', 'Supabase', 'SvelteKit'],
+		project: 'peswa-shop'
+	},
+	{
+		icon: Palette,
+		title: 'Web Design',
+		tagline: 'Interfaces that look good and work well',
+		description:
+			'Starting from user research, I design clean, usable interfaces in Figma, from wireframes to polished screens, and build them exactly as designed so nothing gets lost in hand-off.',
+		status: 'Available now',
+		features: [
+			{ icon: Users, title: 'User Research', text: 'Understand who it is for before designing.' },
+			{ icon: LayoutGrid, title: 'Wireframes', text: 'Structure and flows before visuals.' },
+			{ icon: PenTool, title: 'UI Design', text: 'Polished screens and reusable components.' },
+			{
+				icon: MousePointerClick,
+				title: 'Design to Code',
+				text: 'Built pixel for pixel, with real interactions.'
+			}
 		],
-		visual: {
-			icons: [Settings, Clock, Gauge, Headphones],
-			label: 'Retainers from',
-			value: '$200/mo',
-			badge: '$200+'
-		}
+		tools: ['Figma', 'Tailwind CSS'],
+		project: 'peswa-shop'
 	}
 ];
 
 export const customCta = {
 	title: 'Need Something Custom?',
-	text: 'Placeholder: mention bespoke development, integrations or consulting — anything that does not fit the packages above.'
+	text: "Have an idea that doesn't fit neatly into one of these? Tell me about it and we'll work out the best way to build it."
 };

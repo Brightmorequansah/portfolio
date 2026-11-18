@@ -11,7 +11,7 @@
 	const approachIcons = [Lightbulb, Code, Sparkles];
 </script>
 
-<section id="about" class="scroll-mt-16 bg-surface py-20 md:py-32">
+<section id="about" class="scroll-mt-16 bg-surface pt-20 pb-14 md:pt-32 md:pb-20">
 	<Container>
 		<SectionHeading>About Me</SectionHeading>
 
@@ -20,15 +20,15 @@
 				<div class="relative">
 					<CornerBrackets />
 					<div class="pt-6 pl-6">
-						<h3 class="mb-6 text-2xl font-light">{profile.about.greeting}</h3>
-						<div class="space-y-4 text-lg leading-relaxed">
+						<h3 class="mb-5 text-xl font-light md:mb-6 md:text-2xl">{profile.about.greeting}</h3>
+						<div class="space-y-4 text-base leading-relaxed md:text-lg">
 							{#each profile.about.paragraphs as p (p)}
 								<p>{p}</p>
 							{/each}
 						</div>
 
 						<div class="mt-8 border-t border-border pt-8">
-							<h4 class="mb-6 text-lg font-medium">My approach</h4>
+							<h4 class="mb-6 text-base font-medium md:text-lg">My approach</h4>
 							<div class="grid gap-6 sm:grid-cols-3">
 								{#each profile.about.approach as item, i (item.title)}
 									{@const Icon = approachIcons[i % approachIcons.length]}
@@ -45,7 +45,7 @@
 
 											<div class="mb-4 flex items-center justify-between">
 												<div
-													class="text-3xl font-light text-subtle tabular-nums transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground"
+													class="text-2xl font-light text-subtle tabular-nums transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground md:text-3xl"
 												>
 													{String(i + 1).padStart(2, '0')}
 												</div>

@@ -1,16 +1,16 @@
 export const profile = {
 	name: 'Brightmore Quansah',
-	initials: 'MM',
+	initials: 'BQ',
 	role: 'Creative Developer',
 	tagline:
-		'Designing and building calm, considered digital products. Placeholder tagline — swap in a line about what you do and where you work.',
+		'I bridge the gap between design and engineering, turning ideas into beautiful, high-performing digital experiences that work as well as they look.',
 	location: 'Accra, Ghana',
 	email: 'brightmoreq123@gmail.com',
 	whatsapp: 'https://wa.me/0000000000',
 	fileShare: 'https://drive.google.com/',
 	socials: {
-		github: 'https://github.com/your-username',
-		linkedin: 'https://www.linkedin.com/in/your-username/'
+		github: 'https://github.com/Brightmorequansah',
+		linkedin: 'https://www.linkedin.com/in/brightmore-quansah-61703622a/'
 	},
 	about: {
 		greeting: 'Hi, nice to meet you',

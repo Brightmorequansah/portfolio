@@ -24,12 +24,12 @@
 				<span class="text-sm font-medium tracking-wide uppercase">{intro.eyebrow}</span>
 			</div>
 
-			<h1 class="mb-6 text-5xl font-light tracking-tighter md:text-6xl lg:text-7xl">
+			<h1 class="mb-5 text-4xl font-light tracking-tighter md:mb-6 md:text-6xl lg:text-7xl">
 				{intro.title}
 				<span class="mt-2 block font-normal">{intro.titleEmphasis}</span>
 			</h1>
 
-			<p class="mb-8 max-w-3xl text-lg text-soft md:text-xl">{intro.text}</p>
+			<p class="mb-8 max-w-3xl text-base text-soft md:text-xl">{intro.text}</p>
 
 			<div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
 				{#each intro.valueProps as prop, i (prop.title)}
@@ -51,7 +51,7 @@
 				use:reveal={{ y: 0, delay: 0.5, duration: 0.8 }}
 				class="rounded-xl border border-border bg-linear-to-br from-surface to-background p-8"
 			>
-				<h3 class="mb-4 text-lg font-medium">{intro.contactCard.title}</h3>
+				<h3 class="mb-4 text-base font-medium md:text-lg">{intro.contactCard.title}</h3>
 				<p class="mb-6 text-sm text-muted">{intro.contactCard.text}</p>
 
 				<div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">

@@ -16,12 +16,16 @@
 	let current = $state(Math.max(0, requested));
 	let interacted = $state(false);
 	let locked = false;
+	// 1 = moved forward, -1 = moved back; on phones the new slide enters from that side
+	let direction = $state(0);
 
 	const total = projects.length;
+	const atEnd = $derived(current === total - 1);
 
 	function go(index: number) {
 		const next = Math.max(0, Math.min(total - 1, index));
 		if (next === current) return;
+		direction = next > current ? 1 : -1;
 		current = next;
 		interacted = true;
 		locked = true;
@@ -55,17 +59,26 @@
 			}
 		}
 
+		// Swipes: the first ~10px of movement decide the axis. Sideways → it's ours (and we cancel
+		// the browser's own "swipe = go back" gesture); up/down → normal scrolling, untouched.
 		let startX = 0;
 		let startY = 0;
+		let axis: 'x' | 'y' | null = null;
 		function onTouchStart(e: TouchEvent) {
 			startX = e.touches[0].clientX;
 			startY = e.touches[0].clientY;
+			axis = null;
+		}
+		function onTouchMove(e: TouchEvent) {
+			const dx = e.touches[0].clientX - startX;
+			const dy = e.touches[0].clientY - startY;
+			if (!axis && Math.hypot(dx, dy) > 10) axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+			if (axis === 'x' && e.cancelable) e.preventDefault();
 		}
 		function onTouchEnd(e: TouchEvent) {
+			if (axis !== 'x') return;
 			const dx = e.changedTouches[0].clientX - startX;
-			const dy = e.changedTouches[0].clientY - startY;
-			// horizontal swipes only on mobile, so vertical scrolling inside a slide still works
-			if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+			if (Math.abs(dx) > 50) {
 				if (dx < 0) next();
 				else prev();
 			}
@@ -74,11 +87,22 @@
 		window.addEventListener('wheel', onWheel, { passive: false });
 		window.addEventListener('keydown', onKey);
 		window.addEventListener('touchstart', onTouchStart, { passive: true });
+		// not passive: it has to be able to cancel the browser's sideways gesture
+		window.addEventListener('touchmove', onTouchMove, { passive: false });
 		window.addEventListener('touchend', onTouchEnd, { passive: true });
+
+		// Horizontal swipes belong to this page: stop the browser from treating a sideways swipe
+		// as "go back / forward" (Chrome's overscroll history navigation) while it is open.
+		const root = document.documentElement;
+		const previousOverscroll = root.style.overscrollBehaviorX;
+		root.style.overscrollBehaviorX = 'none';
+
 		return () => {
+			root.style.overscrollBehaviorX = previousOverscroll;
 			window.removeEventListener('wheel', onWheel);
 			window.removeEventListener('keydown', onKey);
 			window.removeEventListener('touchstart', onTouchStart);
+			window.removeEventListener('touchmove', onTouchMove);
 			window.removeEventListener('touchend', onTouchEnd);
 		};
 	});
@@ -89,13 +113,16 @@
 		`rounded-full transition-all duration-300 ${active ? 'bg-accent' : 'bg-border hover:bg-subtle'}`;
 </script>
 
-<div class="h-dvh overflow-hidden pt-16">
+<!-- touch-pan-y: vertical scrolling stays native; horizontal swipes are handled above -->
+<div class="h-dvh touch-pan-y overflow-hidden overscroll-x-none pt-16">
 	{#key current}
-		<!-- each slide's pieces fade up on their own (see ProjectSlide) -->
-		<div class="h-full">
+		<!-- each slide's pieces fade up on their own (see ProjectSlide);
+		     on phones the whole slide also glides in from the side you swiped toward -->
+		<div class="h-full max-md:animate-slide-in" style:--slide-from="{direction * 48}px">
 			<div class="h-full overflow-y-auto pb-28 lg:flex lg:items-center lg:overflow-hidden lg:pb-0">
-				<!-- right padding keeps content clear of the fixed arrow column -->
-				<Container class="py-10 md:px-8 lg:py-0 lg:pr-28 lg:pl-16">
+				<!-- right padding keeps content clear of the fixed arrow column;
+				     phones: top padding clears the fixed stepper bar -->
+				<Container class="pt-36 pb-10 md:px-8 md:py-10 lg:py-0 lg:pr-28 lg:pl-16">
 					<ProjectSlide project={projects[current]} index={current} {total} />
 				</Container>
 			</div>
@@ -143,34 +170,52 @@
 		></button>
 	{/each}
 </div>
-<div class="fixed top-20 left-1/2 z-40 flex -translate-x-1/2 gap-2 md:hidden">
-	{#each projects as p, i (p.slug)}
-		<button
-			type="button"
-			class="h-2 w-8 {dot(i === current)}"
-			onclick={() => go(i)}
-			aria-label="Go to {p.title}"
-			aria-current={i === current}
-		></button>
-	{/each}
+<!-- Phones: stepper bar under the navbar (dots + an always-on swipe hint) -->
+<div
+	class="fixed inset-x-0 top-16 z-40 border-b border-border/60 bg-background/90 pt-5 pb-4 backdrop-blur-md md:hidden"
+>
+	<div class="flex justify-center gap-2">
+		{#each projects as p, i (p.slug)}
+			<button
+				type="button"
+				class="h-2 w-8 {dot(i === current)}"
+				onclick={() => go(i)}
+				aria-label="Go to {p.title}"
+				aria-current={i === current}
+			></button>
+		{/each}
+	</div>
+
+	<!-- swipe hint: label nudges and the thumb glides in the swipe direction
+	     (leftward for "next"; rightward once you reach the last project) -->
+	<div
+		class="mt-4 flex flex-col items-center gap-2"
+		style:--nudge={atEnd ? '4px' : '-4px'}
+		style:--swipe-from={atEnd ? '0' : '2.75rem'}
+		style:--swipe-to={atEnd ? '2.75rem' : '0'}
+		aria-hidden="true"
+	>
+		<p class="animate-swipe-nudge text-xs text-muted">
+			{atEnd ? 'Swipe right for previous project' : 'Swipe to see next project'}
+		</p>
+		<span class="relative h-0.5 w-16 overflow-hidden rounded-full bg-border">
+			<span class="absolute inset-y-0 left-0 w-5 animate-swipe-thumb rounded-full bg-foreground"
+			></span>
+		</span>
+	</div>
 </div>
 
-<!-- Hint, hidden after first interaction.
-	 Mobile: text above the bottom arrows · desktop: a small mouse under the side arrows, clear of the content. -->
+<!-- Desktop hint, hidden after first interaction: a small mouse under the side arrows.
+	 (Phones get the always-on swipe hint in the stepper bar above.) -->
 {#if !interacted}
 	<div
 		in:fade={{ delay: 1200, duration: 600 }}
 		out:fade={{ duration: 300 }}
-		class="pointer-events-none fixed bottom-20 left-1/2 z-30 -translate-x-1/2 text-center md:top-[calc(50%+4.5rem)] md:right-8 md:bottom-auto md:left-auto md:flex md:w-10 md:translate-x-0 md:flex-col md:items-center"
+		class="pointer-events-none fixed top-[calc(50%+4.5rem)] right-8 z-30 hidden w-10 flex-col items-center md:flex"
 	>
-		<p
-			class="rounded-full border border-border bg-background/90 px-3 py-1.5 text-xs whitespace-nowrap text-muted backdrop-blur-sm md:hidden"
-		>
-			Swipe or tap arrows to explore
-		</p>
-		<div class="hidden h-10 w-6 justify-center rounded-full border-2 border-border md:flex">
+		<div class="flex h-10 w-6 justify-center rounded-full border-2 border-border">
 			<div class="mt-2 h-3 w-1 animate-wheel rounded-full bg-subtle"></div>
 		</div>
-		<p class="mt-2 hidden text-[10px] tracking-[0.18em] text-muted uppercase md:block">Scroll</p>
+		<p class="mt-2 text-[10px] tracking-[0.18em] text-muted uppercase">Scroll</p>
 	</div>
 {/if}

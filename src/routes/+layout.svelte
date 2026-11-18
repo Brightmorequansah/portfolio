@@ -13,7 +13,10 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<!-- BQ tab icon: SVG (inverts in dark browser themes), PNG fallback, and the iOS home-screen icon -->
+	<link rel="icon" href={favicon} type="image/svg+xml" />
+	<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 </svelte:head>
 
 <div class="flex min-h-screen flex-col">

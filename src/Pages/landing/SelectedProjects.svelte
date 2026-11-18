@@ -29,7 +29,7 @@
 							>
 								{#if project.gallery?.length}
 									<!-- a touch smaller than the /projects gallery (88%) -->
-									<Laptop class="mx-auto md:w-[82%]">
+									<Laptop class="mx-auto max-md:w-[86%] md:w-[82%]">
 										<img
 											src={project.image}
 											alt="{project.title} preview"

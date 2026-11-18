@@ -15,13 +15,14 @@
 		},
 		md: {
 			box: 'size-20',
-			tl: 'border-t-2 border-l-2 -mt-4 -ml-4',
-			br: 'border-b-2 border-r-2 -mb-4 -mr-4'
+			// phones: sit inside the container gutter instead of touching the screen edge
+			tl: 'border-t-2 border-l-2 -mt-4 md:-ml-4',
+			br: 'border-b-2 border-r-2 -mb-4 md:-mr-4'
 		},
 		lg: {
 			box: 'size-32',
-			tl: 'border-t-4 border-l-4 -mt-4 -ml-4',
-			br: 'border-b-4 border-r-4 -mb-4 -mr-4'
+			tl: 'border-t-4 border-l-4 -mt-4 md:-ml-4',
+			br: 'border-b-4 border-r-4 -mb-4 md:-mr-4'
 		}
 	};
 	const s = $derived(styles[size]);

@@ -19,10 +19,10 @@
 
 <article
 	use:reveal={{ y: 40, duration: 0.8 }}
-	class="grid gap-10 border-t border-border pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16"
+	class="grid grid-cols-1 gap-8 border-t border-border pt-10 md:gap-10 md:pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16"
 >
 	<!-- story -->
-	<div use:reveal={{ x: -40, duration: 0.8 }} class="space-y-6 lg:col-span-5">
+	<div use:reveal={{ x: -40, duration: 0.8 }} class="min-w-0 space-y-6 lg:col-span-5">
 		<div class="flex items-center gap-3">
 			<div class="text-sm text-subtle tabular-nums">
 				Service {String(index + 1).padStart(2, '0')}
@@ -51,7 +51,7 @@
 	</div>
 
 	<!-- details -->
-	<div use:reveal={{ x: 40, duration: 0.8 }} class="space-y-8 lg:col-span-7">
+	<div use:reveal={{ x: 40, duration: 0.8 }} class="min-w-0 space-y-8 lg:col-span-7">
 		<div class="space-y-4">
 			<h3 class="text-base font-medium md:text-lg">What You Get</h3>
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">

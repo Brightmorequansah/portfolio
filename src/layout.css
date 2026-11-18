@@ -36,6 +36,43 @@
 	--animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 	/* a bar filling left → right; its animationend can drive autoplay */
 	--animate-progress: progress var(--progress-duration, 5s) linear forwards;
+	/* mobile swipe hint: a thumb gliding along a short track, and its label nudging in step */
+	--animate-swipe-thumb: swipe-thumb 1.8s ease-in-out infinite;
+	--animate-swipe-nudge: swipe-nudge 1.8s ease-in-out infinite;
+	/* a slide entering from the side it was swiped toward (set --slide-from on the element) */
+	--animate-slide-in: slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+	@keyframes swipe-thumb {
+		0% {
+			transform: translateX(var(--swipe-from, 2.75rem));
+			opacity: 0;
+		}
+		20%,
+		75% {
+			opacity: 1;
+		}
+		100% {
+			transform: translateX(var(--swipe-to, 0));
+			opacity: 0;
+		}
+	}
+
+	@keyframes swipe-nudge {
+		0%,
+		100% {
+			transform: translateX(0);
+		}
+		50% {
+			transform: translateX(var(--nudge, -4px));
+		}
+	}
+
+	@keyframes slide-in {
+		from {
+			opacity: 0;
+			transform: translateX(var(--slide-from, 0));
+		}
+	}
 
 	@keyframes fade-up {
 		from {

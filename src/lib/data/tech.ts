@@ -23,7 +23,8 @@ import {
 	siFigma,
 	siCloudinary,
 	siGit,
-	siGithub
+	siGithub,
+	siApacheecharts
 } from 'simple-icons';
 
 /** tech name (as written in projects.ts) → brand hex without '#' */
@@ -54,7 +55,10 @@ const brandHex: Record<string, string> = {
 	Figma: siFigma.hex,
 	Cloudinary: siCloudinary.hex,
 	Git: siGit.hex,
-	GitHub: siGithub.hex
+	GitHub: siGithub.hex,
+	// not in simple-icons; Paystack's logo blue
+	Paystack: '00C3F7',
+	ECharts: siApacheecharts.hex
 };
 
 /** relative luminance (0 = black, 1 = white) of a hex colour */

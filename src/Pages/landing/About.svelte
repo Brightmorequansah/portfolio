@@ -32,10 +32,10 @@
 							<div class="grid gap-6 sm:grid-cols-3">
 								{#each profile.about.approach as item, i (item.title)}
 									{@const Icon = approachIcons[i % approachIcons.length]}
-									<!-- outer div: scroll reveal · inner card: hover (lift, fill, top bar, icon chip) -->
+									<!-- outer div: scroll reveal · inner card: hover (lift, top bar, icon chip) -->
 									<div use:reveal={{ delay: i * 0.1 }} class="group h-full">
 										<div
-											class="relative h-full overflow-hidden rounded-xl border border-transparent p-5 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:border-border group-hover:bg-background group-hover:shadow-xl group-hover:shadow-foreground/5"
+											class="relative h-full overflow-hidden rounded-xl p-5 transition-all duration-300 ease-out group-hover:-translate-y-1"
 										>
 											<!-- accent bar that draws across the top -->
 											<span

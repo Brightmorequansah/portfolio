@@ -1,7 +1,7 @@
 export const profile = {
 	name: 'Brightmore Quansah',
 	initials: 'BQ',
-	role: 'Creative Developer',
+	role: 'Design Engineer / Developer',
 	tagline:
 		'I bridge the gap between design and engineering, turning ideas into beautiful, high-performing digital experiences that work as well as they look.',
 	location: 'Accra, Ghana',

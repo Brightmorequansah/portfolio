@@ -15,14 +15,15 @@
 
 	<!-- bottom padding lifts the centred content; the absolute scroll bar below is unaffected -->
 	<Container class="relative z-10 pb-16 md:pb-24">
-		<div class="mx-auto max-w-3xl text-center">
+		<div class="mx-auto max-w-5xl text-center">
 			<h1
 				use:reveal={{ duration: 0.8, delay: 0.2 }}
 				class="mb-6 text-3xl font-light tracking-tighter sm:text-4xl md:text-6xl lg:text-7xl"
 			>
-				<span class="font-normal">{profile.name}</span>
+				<!-- phones: name a size up (scaling with width), role a size down; desktop: role one size under the name so it stays on one line -->
+				<span class="font-normal max-md:text-[clamp(2rem,9.6vw,2.375rem)]">{profile.name}</span>
 				<br />
-				<span class="relative inline-block">
+				<span class="relative inline-block max-md:text-2xl md:text-5xl lg:text-6xl">
 					{profile.role}
 					<span
 						use:reveal={{ width: '100%', duration: 0.8, delay: 0.9 }}

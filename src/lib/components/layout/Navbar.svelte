@@ -96,9 +96,9 @@
 					{#each navLinks as link (link.href)}
 						<a
 							href={link.href}
-							class="py-3 text-base transition-colors hover:text-subtle {isActive(link.href)
-								? 'font-medium'
-								: 'font-light'}"
+							class="py-3 text-[15px] transition-colors hover:text-subtle {isActive(link.href)
+								? 'font-semibold'
+								: 'font-normal'}"
 							onclick={() => (mobileOpen = false)}
 						>
 							{link.label}

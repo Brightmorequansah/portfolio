@@ -6,7 +6,7 @@
 	import { servicesHero } from '#lib/data/services.js';
 </script>
 
-<section class="py-20 md:py-32">
+<section class="pt-8 pb-12 md:py-32">
 	<Container class="max-w-7xl md:px-8 lg:px-12">
 		<div class="mx-auto max-w-4xl text-center">
 			<div use:reveal={{ duration: 0.8 }} class="mb-8">

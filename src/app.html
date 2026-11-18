@@ -5,11 +5,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="text-scale" content="scale" />
 		<script>
-			// Apply a saved dark-mode choice before the page paints (avoids a white flash). Light is the default.
-			try {
-				if (localStorage.getItem('theme') === 'dark')
-					document.documentElement.classList.add('dark');
-			} catch {}
+			// Pick the theme before the page paints (avoids a flash of the wrong theme).
+			// 1. A choice saved by the Light/Dark toggle always wins.
+			// 2. Otherwise: mouse/trackpad devices (desktop web) start dark,
+			//    touch devices (phones, tablets) start light.
+			(function () {
+				// 'color-theme' replaced the old 'theme' key so choices saved before the
+				// desktop-dark default existed don't keep overriding it.
+				var saved = null;
+				try {
+					saved = localStorage.getItem('color-theme');
+					localStorage.removeItem('theme');
+				} catch (e) {}
+				var desktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+				var dark = saved ? saved === 'dark' : desktop;
+				if (dark) document.documentElement.classList.add('dark');
+			})();
 		</script>
 		%sveltekit.head%
 	</head>

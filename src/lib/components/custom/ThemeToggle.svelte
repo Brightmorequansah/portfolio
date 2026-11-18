@@ -15,7 +15,7 @@
 		dark = !dark;
 		document.documentElement.classList.toggle('dark', dark);
 		try {
-			localStorage.setItem('theme', dark ? 'dark' : 'light');
+			localStorage.setItem('color-theme', dark ? 'dark' : 'light');
 		} catch {
 			// storage unavailable (private mode etc.) — theme still switches for this visit
 		}

@@ -12,7 +12,7 @@ export type TimelineItem = {
 export const experience: TimelineItem[] = [
 	{
 		period: '2025 — Present',
-		title: 'Junior Frontend Engineer',
+		title: 'Frontend Engineer',
 		org: 'Axon Information Systems',
 		summary:
 			'Working with frontend and backend engineers to ship user-facing features, tested and deployed.',

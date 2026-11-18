@@ -10,9 +10,7 @@
 	class="inline-flex items-center transition-opacity hover:opacity-80 {className}"
 	aria-label="{profile.name} — home"
 >
-	<span
-		class="flex size-10 items-center justify-center rounded-full border border-current text-sm font-normal tracking-tight"
-	>
+	<span class="flex h-10 items-center text-lg font-medium tracking-tight">
 		{profile.initials}
 	</span>
 </a>

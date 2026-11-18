@@ -2,7 +2,7 @@
 	Infinite horizontal marquee of icon + label pills.
 	- The item set is repeated enough to fill wide screens, then the whole track is doubled and
 	  slid by -50% so the loop is seamless.
-	- Edges fade out, hovering pauses the row, each pill inverts on hover.
+	- Edges fade out; no hover effects (the rows keep gliding).
 	- Reduced motion: the global rule in layout.css stops the animation (static row).
 -->
 <script lang="ts">
@@ -35,7 +35,7 @@
 	>
 		{#each list as item, i (item.title + i)}
 			<li
-				class="flex shrink-0 cursor-default items-center gap-3 rounded-full border border-border bg-background px-5 py-3 transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-accent-foreground md:px-6 md:py-4"
+				class="flex shrink-0 cursor-default items-center gap-3 rounded-full border border-border bg-background px-5 py-3 md:px-6 md:py-4"
 			>
 				<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="size-5 md:size-6">
 					<path d={item.path} />
@@ -47,12 +47,10 @@
 {/snippet}
 
 <div
-	class="group relative flex overflow-hidden mask-[linear-gradient(to_right,transparent,black_12%,black_88%,transparent)] py-1"
+	class="relative flex overflow-hidden mask-[linear-gradient(to_right,transparent,black_12%,black_88%,transparent)] py-1"
 >
 	<div
-		class="flex w-max animate-marquee group-hover:[animation-play-state:paused] {reverse
-			? '[animation-direction:reverse]'
-			: ''}"
+		class="flex w-max animate-marquee {reverse ? '[animation-direction:reverse]' : ''}"
 		style="--marquee-duration: {duration}s"
 	>
 		{@render pills(set, false)}

@@ -4,14 +4,16 @@
 -->
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
 	import { fade } from 'svelte/transition';
 	import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from '@lucide/svelte';
 	import Container from '#lib/components/custom/Container.svelte';
 	import ProjectSlide from './ProjectSlide.svelte';
-	import { enter } from '#lib/motion.js';
 	import { projects } from '#lib/data/projects.js';
 
-	let current = $state(0);
+	// /projects?project=<slug> opens straight on that project
+	const requested = projects.findIndex((p) => p.slug === page.url.searchParams.get('project'));
+	let current = $state(Math.max(0, requested));
 	let interacted = $state(false);
 	let locked = false;
 
@@ -33,6 +35,9 @@
 
 		function onWheel(e: WheelEvent) {
 			if (!desktop.matches) return; // mobile slides scroll internally
+			// trackpad pinch and Ctrl + wheel arrive as wheel events with ctrlKey set:
+			// leave those to the browser so zooming still works
+			if (e.ctrlKey) return;
 			e.preventDefault();
 			if (locked || Math.abs(e.deltaY) < 30) return;
 			if (e.deltaY > 0) next();
@@ -86,10 +91,12 @@
 
 <div class="h-dvh overflow-hidden pt-16">
 	{#key current}
-		<div in:enter={{ y: 100, duration: 600 }} class="h-full">
+		<!-- each slide's pieces fade up on their own (see ProjectSlide) -->
+		<div class="h-full">
 			<div class="h-full overflow-y-auto pb-28 lg:flex lg:items-center lg:overflow-hidden lg:pb-0">
-				<Container class="py-10 md:px-8 lg:px-12 lg:py-0">
-					<ProjectSlide project={projects[current]} />
+				<!-- right padding keeps content clear of the fixed arrow column -->
+				<Container class="py-10 md:px-8 lg:py-0 lg:pr-28 lg:pl-16">
+					<ProjectSlide project={projects[current]} index={current} {total} />
 				</Container>
 			</div>
 		</div>
@@ -129,7 +136,7 @@
 	{#each projects as p, i (p.slug)}
 		<button
 			type="button"
-			class="h-8 w-2 {dot(i === current)}"
+			class="h-12 w-2 {dot(i === current)}"
 			onclick={() => go(i)}
 			aria-label="Go to {p.title}"
 			aria-current={i === current}
@@ -148,19 +155,18 @@
 	{/each}
 </div>
 
-<!-- Hint, hidden after first interaction -->
+<!-- Hint, hidden after first interaction.
+	 Mobile: text above the bottom arrows · desktop: a small mouse under the side arrows, clear of the content. -->
 {#if !interacted}
 	<div
 		in:fade={{ delay: 1200, duration: 600 }}
 		out:fade={{ duration: 300 }}
-		class="pointer-events-none fixed bottom-20 left-1/2 z-30 -translate-x-1/2 text-center md:bottom-8"
+		class="pointer-events-none fixed bottom-20 left-1/2 z-30 -translate-x-1/2 text-center md:top-[calc(50%+4.5rem)] md:right-8 md:bottom-auto md:left-auto md:flex md:w-10 md:translate-x-0 md:flex-col md:items-center"
 	>
-		<p class="mb-2 text-sm text-subtle">
-			<span class="hidden md:inline">Scroll to explore projects</span>
-			<span class="md:hidden">Swipe or tap arrows to explore</span>
-		</p>
-		<div class="mx-auto hidden h-10 w-6 justify-center rounded-full border-2 border-border md:flex">
+		<p class="text-sm text-muted md:hidden">Swipe or tap arrows to explore</p>
+		<div class="hidden h-10 w-6 justify-center rounded-full border-2 border-border md:flex">
 			<div class="mt-2 h-3 w-1 animate-wheel rounded-full bg-subtle"></div>
 		</div>
+		<p class="mt-2 hidden text-[10px] tracking-[0.18em] text-muted uppercase md:block">Scroll</p>
 	</div>
 {/if}

@@ -23,7 +23,7 @@
 
 	const segment = (active: boolean) =>
 		`relative z-10 flex items-center justify-center gap-1.5 px-3 transition-colors duration-300 ${
-			active ? 'text-accent-foreground' : 'text-subtle group-hover:text-foreground'
+			active ? 'text-accent-foreground' : 'text-soft group-hover:text-foreground'
 		}`;
 </script>
 

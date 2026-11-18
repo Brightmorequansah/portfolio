@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { slide } from 'svelte/transition';
-	import { ChevronDown, Menu, X } from '@lucide/svelte';
+	import { Menu, X } from '@lucide/svelte';
 	import ThemeToggle from '#lib/components/custom/ThemeToggle.svelte';
 	import Logo from './Logo.svelte';
 	import { navLinks } from '#lib/data/profile.js';
@@ -58,41 +58,15 @@
 					aria-label="Main"
 				>
 					{#each navLinks as link (link.href)}
-						<div class="group relative">
-							<a
-								href={link.href}
-								class="flex items-center gap-1 text-sm transition-colors hover:text-subtle {isActive(
-									link.href
-								)
-									? 'font-medium'
-									: 'font-light'}"
-								aria-current={isActive(link.href) ? 'page' : undefined}
-							>
-								{link.label}
-								{#if link.children}
-									<ChevronDown
-										class="size-3.5 transition-transform duration-300 group-hover:rotate-180"
-									/>
-								{/if}
-							</a>
-
-							{#if link.children}
-								<div
-									class="invisible absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
-								>
-									<div class="w-44 rounded-lg border border-border bg-background p-2 shadow-lg">
-										{#each link.children as child (child.href)}
-											<a
-												href={child.href}
-												class="block rounded-md px-3 py-2 text-sm transition-colors hover:bg-surface-raised"
-											>
-												{child.label}
-											</a>
-										{/each}
-									</div>
-								</div>
-							{/if}
-						</div>
+						<a
+							href={link.href}
+							class="text-sm transition-colors hover:text-subtle {isActive(link.href)
+								? 'font-medium'
+								: 'font-light'}"
+							aria-current={isActive(link.href) ? 'page' : undefined}
+						>
+							{link.label}
+						</a>
 					{/each}
 				</nav>
 
@@ -129,19 +103,6 @@
 						>
 							{link.label}
 						</a>
-						{#if link.children}
-							<div class="mb-2 flex flex-col border-l border-border pl-4">
-								{#each link.children as child (child.href)}
-									<a
-										href={child.href}
-										class="py-2 text-sm text-muted transition-colors hover:text-foreground"
-										onclick={() => (mobileOpen = false)}
-									>
-										{child.label}
-									</a>
-								{/each}
-							</div>
-						{/if}
 					{/each}
 				</div>
 			</nav>

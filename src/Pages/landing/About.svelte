@@ -32,22 +32,35 @@
 							<div class="grid gap-6 sm:grid-cols-3">
 								{#each profile.about.approach as item, i (item.title)}
 									{@const Icon = approachIcons[i % approachIcons.length]}
-									<div use:reveal={{ delay: i * 0.1 }} class="group">
+									<!-- outer div: scroll reveal · inner card: hover (lift, fill, top bar, icon chip) -->
+									<div use:reveal={{ delay: i * 0.1 }} class="group h-full">
 										<div
-											class="rounded-lg border border-transparent p-4 transition-all duration-300 group-hover:border-border"
+											class="relative h-full overflow-hidden rounded-xl border border-transparent p-5 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:border-border group-hover:bg-background group-hover:shadow-xl group-hover:shadow-foreground/5"
 										>
-											<div class="mb-3 flex items-center justify-between">
+											<!-- accent bar that draws across the top -->
+											<span
+												aria-hidden="true"
+												class="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
+											></span>
+
+											<div class="mb-4 flex items-center justify-between">
 												<div
-													class="text-3xl font-light text-subtle transition-colors group-hover:text-foreground"
+													class="text-3xl font-light text-subtle tabular-nums transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground"
 												>
 													{String(i + 1).padStart(2, '0')}
 												</div>
-												<Icon
-													class="size-5 text-subtle transition-colors group-hover:text-foreground"
-												/>
+												<span
+													class="flex size-9 items-center justify-center rounded-full text-subtle transition-all duration-300 group-hover:rotate-[-8deg] group-hover:bg-accent group-hover:text-accent-foreground"
+												>
+													<Icon class="size-4.5" />
+												</span>
 											</div>
 											<h5 class="mb-1 font-medium">{item.title}</h5>
-											<p class="text-sm text-muted">{item.text}</p>
+											<p
+												class="text-sm text-muted transition-colors duration-300 group-hover:text-soft"
+											>
+												{item.text}
+											</p>
 										</div>
 									</div>
 								{/each}
@@ -58,7 +71,7 @@
 			</div>
 
 			<div class="space-y-8 md:col-span-5 lg:col-span-4">
-				<Timeline heading="Experience" items={experience} />
+				<Timeline heading="Experience" items={experience} defaultOpen />
 				<Timeline heading="Education" items={education} toggleLabel="Show courses" />
 			</div>
 		</div>

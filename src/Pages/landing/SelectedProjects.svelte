@@ -1,10 +1,16 @@
 <script lang="ts">
-	import { ArrowRight, ArrowUpRight, CircleCheckBig } from '@lucide/svelte';
+	import { ArrowRight, ArrowUpRight, CircleCheckBig, Lock } from '@lucide/svelte';
+	import Badge from '#lib/components/custom/Badge.svelte';
 	import Button from '#lib/components/custom/Button.svelte';
 	import Container from '#lib/components/custom/Container.svelte';
+	import Laptop from '#lib/components/custom/Laptop.svelte';
 	import SectionHeading from '#lib/components/custom/SectionHeading.svelte';
 	import { reveal } from '#lib/motion.js';
-	import { featuredProjects } from '#lib/data/projects.js';
+	import { featuredProjects, type Project } from '#lib/data/projects.js';
+	import { techColor } from '#lib/data/tech.js';
+
+	// public projects open their live site; private ones open their slide on /projects
+	const linkFor = (p: Project) => p.url ?? `/projects?project=${p.slug}`;
 </script>
 
 <section id="projects" class="scroll-mt-16 py-20 md:py-32">
@@ -17,31 +23,53 @@
 					<div class="grid items-center gap-8 md:grid-cols-12">
 						<div class="relative md:col-span-7">
 							<a
-								href={project.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="relative block aspect-video overflow-hidden"
+								href={linkFor(project)}
+								target={project.url ? '_blank' : undefined}
+								rel={project.url ? 'noopener noreferrer' : undefined}
+								class="relative block"
 								aria-label="Open {project.title}"
 							>
-								<img
-									src={project.image}
-									alt="{project.title} preview"
-									loading="lazy"
-									class="absolute inset-0 size-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
-								/>
+								{#if project.gallery?.length}
+									<!-- a touch smaller than the /projects gallery (88%) -->
+									<Laptop class="mx-auto md:w-[82%]">
+										<img
+											src={project.image}
+											alt="{project.title} preview"
+											loading="lazy"
+											class="absolute inset-0 size-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+										/>
+									</Laptop>
+								{:else}
+									<div class="relative aspect-video overflow-hidden">
+										<img
+											src={project.image}
+											alt="{project.title} preview"
+											loading="lazy"
+											class="absolute inset-0 size-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+										/>
+									</div>
+								{/if}
 							</a>
 						</div>
 
 						<div class="space-y-4 md:col-span-5">
 							<div use:reveal={{ delay: 0.2 }}>
-								<h3 class="text-2xl font-medium">{project.title}</h3>
+								<h3 class="flex flex-wrap items-center gap-3 text-2xl font-medium">
+									{project.title}
+									{#if project.private}
+										<span
+											class="inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-0.5 text-xs font-normal text-muted"
+										>
+											<Lock class="size-3" />
+											In-house
+										</span>
+									{/if}
+								</h3>
 								<p class="mt-2 text-soft">{project.description}</p>
 
 								<div class="mt-4 flex flex-wrap gap-2">
 									{#each project.tech as tech (tech)}
-										<span class="inline-block rounded-full bg-surface-raised px-3 py-1 text-xs"
-											>{tech}</span
-										>
+										<Badge color={techColor(tech)}>{tech}</Badge>
 									{/each}
 								</div>
 
@@ -61,11 +89,15 @@
 								</div>
 
 								<div class="mt-6">
-									<Button href={project.url} external variant="outline">
+									<Button href={linkFor(project)} external={!!project.url} variant="outline">
 										View Project
-										<ArrowUpRight
-											class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-										/>
+										{#if project.url}
+											<ArrowUpRight
+												class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+											/>
+										{:else}
+											<ArrowRight class="transition-transform group-hover:translate-x-1" />
+										{/if}
 									</Button>
 								</div>
 							</div>

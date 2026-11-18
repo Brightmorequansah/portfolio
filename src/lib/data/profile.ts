@@ -16,7 +16,7 @@ export const profile = {
 		greeting: 'Hi, nice to meet you',
 		paragraphs: [
 			'I love to imagine an idea, shape it into a design and build it into being. I care about both function and beauty: products should work flawlessly and feel great to use.',
-			'As a developer, I enjoy writing clean code, structuring projects well and understanding how programs work under the hood, so I can solve each problem with the right solution rather than a generic one. I also understand how to work well in a team, communicating clearly and collaborating to ship great products together.',
+			'As a developer with over 3 years of experience, I enjoy writing clean code, structuring projects well and understanding how programs work under the hood, so I can solve each problem with the right solution rather than a generic one. I also understand how to work well in a team, communicating clearly and collaborating to ship great products together.',
 			'Away from the keyboard, I play video games, watch videos and research modern UI/UX ideas that are redefining how apps are designed and built.'
 		],
 		approach: [

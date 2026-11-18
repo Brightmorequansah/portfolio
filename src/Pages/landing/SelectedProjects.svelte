@@ -29,7 +29,7 @@
 							>
 								{#if project.gallery?.length}
 									<!-- a touch smaller than the /projects gallery (88%) -->
-									<Laptop class="mx-auto max-md:w-[86%] md:w-[82%]">
+									<Laptop class="mx-auto md:w-[80%]">
 										<img
 											src={project.image}
 											alt="{project.title} preview"
@@ -109,10 +109,14 @@
 		</div>
 
 		<div class="mt-16 text-center">
-			<Button href="/projects" variant="outline">
-				View All Projects
-				<ArrowRight class="transition-transform group-hover:translate-x-1" />
-			</Button>
+			<!-- a plain text link, not a button -->
+			<a
+				href="/projects"
+				class="group inline-flex items-center gap-1.5 text-sm font-medium underline decoration-foreground/40 underline-offset-4 transition-colors hover:decoration-foreground md:text-base"
+			>
+				View all projects
+				<ArrowRight class="size-4 transition-transform group-hover:translate-x-1" />
+			</a>
 		</div>
 	</Container>
 </section>

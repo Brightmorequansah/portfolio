@@ -81,7 +81,7 @@ export type Project = {
 	/** richer feature tiles used on /projects */
 	features: { icon: Component; title: string; text: string }[];
 	impact: { value: string; label: string }[];
-	/** shown in "Selected Projects" on the landing page */
+	/** shown in the "Projects" section on the landing page */
 	featured?: boolean;
 };
 

@@ -30,12 +30,12 @@
 				<div use:reveal={{ x: -20, duration: 0.8 }} class="relative">
 					<CornerBrackets size="sm" />
 					<div class="p-6">
-						<h3 class="mb-6 text-2xl font-light">{profile.contact.heading}</h3>
+						<h3 class="mb-5 text-xl font-light md:mb-6 md:text-2xl">{profile.contact.heading}</h3>
 						<p class="mb-8 text-soft">{profile.contact.text}</p>
 						<div class="space-y-6">
 							<a
 								href="mailto:{profile.email}"
-								class="group flex items-center text-lg transition-colors hover:text-subtle"
+								class="group flex items-center text-base break-all transition-colors hover:text-subtle md:text-lg"
 							>
 								<span
 									class="mr-4 flex size-10 items-center justify-center rounded-full bg-surface-raised transition-colors group-hover:bg-accent group-hover:text-accent-foreground"
@@ -73,13 +73,13 @@
 						{#if sent}
 							<div in:fade class="flex flex-col items-center py-12 text-center">
 								<CircleCheckBig class="mb-4 size-10" />
-								<h4 class="mb-2 text-xl font-light">Message sent</h4>
+								<h4 class="mb-2 text-lg font-light md:text-xl">Message sent</h4>
 								<p class="text-sm text-muted">
 									Thanks for reaching out — I'll get back to you soon.
 								</p>
 							</div>
 						{:else}
-							<h4 class="mb-6 text-xl font-light">Send me a message</h4>
+							<h4 class="mb-6 text-lg font-light md:text-xl">Send me a message</h4>
 							<form class="space-y-6" {onsubmit}>
 								<div class="space-y-2">
 									<label for="name" class="text-sm font-medium">Name</label>

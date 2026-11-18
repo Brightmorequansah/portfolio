@@ -163,7 +163,11 @@
 		out:fade={{ duration: 300 }}
 		class="pointer-events-none fixed bottom-20 left-1/2 z-30 -translate-x-1/2 text-center md:top-[calc(50%+4.5rem)] md:right-8 md:bottom-auto md:left-auto md:flex md:w-10 md:translate-x-0 md:flex-col md:items-center"
 	>
-		<p class="text-sm text-muted md:hidden">Swipe or tap arrows to explore</p>
+		<p
+			class="rounded-full border border-border bg-background/90 px-3 py-1.5 text-xs whitespace-nowrap text-muted backdrop-blur-sm md:hidden"
+		>
+			Swipe or tap arrows to explore
+		</p>
 		<div class="hidden h-10 w-6 justify-center rounded-full border-2 border-border md:flex">
 			<div class="mt-2 h-3 w-1 animate-wheel rounded-full bg-subtle"></div>
 		</div>

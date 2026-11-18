@@ -7,7 +7,7 @@
 
 <h2
 	use:reveal
-	class="mb-12 text-center text-3xl font-light tracking-tighter md:text-4xl {className}"
+	class="mb-10 text-center text-2xl font-light tracking-tighter md:mb-12 md:text-4xl {className}"
 >
 	{@render children()}
 </h2>

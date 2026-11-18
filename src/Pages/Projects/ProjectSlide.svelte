@@ -176,7 +176,7 @@
 		</div>
 
 		<h1
-			class="mt-4 animate-fade-up text-4xl font-light tracking-tight md:text-5xl xl:text-6xl short:mt-2 short:xl:text-5xl"
+			class="mt-4 animate-fade-up text-3xl font-light tracking-tight md:text-5xl xl:text-6xl short:mt-2 short:xl:text-5xl"
 			style={rise(80)}
 		>
 			{project.title}
@@ -193,7 +193,7 @@
 		<div class="mt-8 grid grid-cols-3 divide-x divide-border short:mt-4">
 			{#each project.impact as metric, i (metric.label)}
 				<div class="animate-fade-up px-4 first:pl-0 last:pr-0" style={rise(240 + i * 70)}>
-					<div class="text-2xl font-light tabular-nums md:text-3xl short:md:text-2xl">
+					<div class="text-xl font-light tabular-nums md:text-3xl short:md:text-2xl">
 						{metric.value}
 					</div>
 					<div class="mt-1 text-xs text-muted">{metric.label}</div>

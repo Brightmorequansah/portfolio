@@ -13,9 +13,9 @@
 	const detailsFor = (p: Project) => `/projects?project=${p.slug}`;
 </script>
 
-<section id="projects" class="scroll-mt-16 py-20 md:py-32">
+<section id="projects" class="scroll-mt-16 pt-14 pb-20 md:pt-20 md:pb-32">
 	<Container>
-		<SectionHeading>Selected Projects</SectionHeading>
+		<SectionHeading class="mb-20 md:mb-24">Projects</SectionHeading>
 
 		<div class="grid gap-24 md:gap-36">
 			{#each featuredProjects as project (project.slug)}
@@ -52,7 +52,7 @@
 
 						<div class="space-y-4 md:col-span-5">
 							<div use:reveal={{ delay: 0.2 }}>
-								<h3 class="flex flex-wrap items-center gap-3 text-2xl font-medium">
+								<h3 class="flex flex-wrap items-center gap-3 text-xl font-medium md:text-2xl">
 									{project.title}
 									{#if project.private}
 										<span

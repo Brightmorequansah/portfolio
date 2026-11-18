@@ -23,8 +23,8 @@ export const experience: TimelineItem[] = [
 		]
 	},
 	{
-		period: '2025 — Present',
-		title: 'Full Stack Developer',
+		period: '2025 — 2026',
+		title: 'Full Stack Developer — Freelance',
 		org: 'The Peswa',
 		summary:
 			'Designed and built The Peswa’s brand website and online shop end to end, from frontend to backend.',

@@ -1,14 +1,7 @@
-// ✏️ Replace with your own projects. Screenshots live in src/lib/assets/projects/<slug> and are imported below.
+// Your projects. Screenshots live in src/lib/assets/projects/<slug> and are imported below.
 import type { Component } from 'svelte';
 import {
-	Gauge,
-	Layers,
-	Lock,
-	Smartphone,
 	Search,
-	Zap,
-	Database,
-	Palette,
 	BookOpen,
 	GraduationCap,
 	Bell,
@@ -84,17 +77,6 @@ export type Project = {
 	/** shown in the "Projects" section on the landing page */
 	featured?: boolean;
 };
-
-const defaultFeatures = [
-	{
-		icon: Smartphone,
-		title: 'Responsive',
-		text: 'Placeholder: works beautifully on every screen size.'
-	},
-	{ icon: Zap, title: 'Fast', text: 'Placeholder: optimised assets and instant navigation.' },
-	{ icon: Lock, title: 'Secure', text: 'Placeholder: authentication and safe payments.' },
-	{ icon: Search, title: 'SEO Ready', text: 'Placeholder: structured data and clean metadata.' }
-];
 
 export const projects: Project[] = [
 	{
@@ -294,60 +276,6 @@ export const projects: Project[] = [
 			{ value: '5', label: 'Pages' }
 		],
 		featured: true
-	},
-	{
-		slug: 'project-four',
-		title: 'Project Four',
-		subtitle: 'Brand & Marketing Site',
-		description:
-			'Placeholder description of a marketing site: the brand, the storytelling and the CMS that lets the client update it themselves.',
-		image: '/projects/project-4.svg',
-		url: 'https://example.com',
-		year: '2024',
-		duration: '6 weeks',
-		team: 'Solo project',
-		role: 'Designer & Developer',
-		tech: ['Next.js', 'Tailwind CSS', 'Sanity'],
-		highlights: [
-			'Placeholder editorial layouts',
-			'Placeholder CMS workflow',
-			'Placeholder motion design'
-		],
-		features: [
-			{ icon: Palette, title: 'Brand-led', text: 'Placeholder: bespoke art direction.' },
-			...defaultFeatures.slice(1)
-		],
-		impact: [
-			{ value: '2x', label: 'Enquiries' },
-			{ value: '0.9s', label: 'Load Time' },
-			{ value: '100', label: 'SEO Score' }
-		]
-	},
-	{
-		slug: 'project-five',
-		title: 'Project Five',
-		subtitle: 'Open-source Tool',
-		description:
-			'Placeholder description of an open-source library or CLI: what it automates, who uses it and how the community has grown.',
-		image: '/projects/project-5.svg',
-		url: 'https://example.com',
-		source: 'https://github.com/your-username/project-five',
-		year: '2023',
-		duration: 'Ongoing',
-		team: 'Open source',
-		role: 'Maintainer',
-		tech: ['Python', 'Docker', 'GitHub Actions'],
-		highlights: [
-			'Placeholder plugin system',
-			'Placeholder CI integration',
-			'Placeholder docs site'
-		],
-		features: defaultFeatures,
-		impact: [
-			{ value: '1.5k', label: 'GitHub Stars' },
-			{ value: '40+', label: 'Contributors' },
-			{ value: '10k', label: 'Weekly Installs' }
-		]
 	}
 ];
 
